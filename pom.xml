@@ -18,11 +18,15 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.6.1</version>
+            <!--经测试Spring在2.7.0中无法正常使用，Springboot可以-->
+            <!--<version>2.7.0</version>-->
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
+            <!--经测试Spring在2.7.0中无法正常使用，Springboot可以-->
+            <!--<version>2.7.0</version>-->
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>

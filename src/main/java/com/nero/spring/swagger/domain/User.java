@@ -2,13 +2,14 @@ package com.nero.spring.swagger.domain;
 
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "用户对象模型")
 public class User {
     private long id;
-//    @ApiModelProperty(value = "name",required = true)
+    @ApiModelProperty(value = "名称",required = true)
     private String name;
-//    @ApiModelProperty(value = "age",required = true)
+    @ApiModelProperty(value = "年龄",required = true)
     private int age;
 
     public long getId() {

@@ -12,18 +12,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class Swagger {
+public class SwaggerConfig {
     @Bean
-    public Docket docket(){
+    public Docket getDocket(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
+                .groupName("alarm")//分组
+                .apiInfo(getApiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.nero.spring.swagger"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
-    public ApiInfo apiInfo(){
+    private ApiInfo getApiInfo(){
         return new ApiInfoBuilder()
                 .title("利用swagger2构建的API文档")
                 .description("用restful风格写接口")

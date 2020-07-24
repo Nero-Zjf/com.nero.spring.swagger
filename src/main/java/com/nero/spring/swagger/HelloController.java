@@ -5,19 +5,25 @@ import io.swagger.annotations.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
-@Api(value = "用户管理类")
+@RestController
+@Api(value = "idea", tags = {"test"})
+//@ApiResponses也可以定义在方法中，方法中的定义具有优先级
+@ApiResponses({
+        @ApiResponse(code = 400, message = "参数没有填好", response = String.class),
+        @ApiResponse(code = 101, response = User.class, message = "请求成功返回的model")
+})
 public class HelloController {
-
-    @RequestMapping(value = "/hello",method = RequestMethod.GET)
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     @ResponseBody
     public Object hello() throws Exception {
-        Map<String,Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("msg", "hello");
         return map;
     }
@@ -30,8 +36,8 @@ public class HelloController {
      */
     @PostMapping(value = "/user")
     @ApiOperation(value = "新增一个用户", notes = "新增之后返回对象")
-    @ApiResponse(code = 400, message = "参数没有填好", response = String.class)
-    public String insert(@RequestBody User user) {
+    //@ApiResponses(@ApiResponse(code = 400, message = "参数没有填好", response = String.class))
+    public String insert(@RequestBody User user, HttpServletResponse res) {
         return "success";
     }
 
@@ -44,7 +50,6 @@ public class HelloController {
     @DeleteMapping(value = "/user/{id}")
     @ApiOperation(value = "删除用户", notes = "根据成员id删除单个用户")
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户id", required = true, dataType = "Integer")
-    @ApiResponse(code = 400, message = "参数没有填好", response = String.class)
     public String delete(@PathVariable("id") Integer id) {
         return "success";
     }
